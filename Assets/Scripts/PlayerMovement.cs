@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         float playerHalfWidth = transform.localScale.x/2f;
-        halfScreenWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize +playerHalfWidth;    
+        halfScreenWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize + playerHalfWidth;    
     }
 
     // Update is called once per frame
