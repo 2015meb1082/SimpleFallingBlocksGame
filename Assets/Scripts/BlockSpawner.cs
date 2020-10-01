@@ -4,7 +4,8 @@ public class BlockSpawner : MonoBehaviour
 {
     private float nextTimeToSpawn;
     [SerializeField]
-    private float spawnWaitingTime=1.0f;
+    private Vector2 spawnWaitingTimeMinMax;
+
 
     private Camera mainCamera;
     [SerializeField]
@@ -32,6 +33,7 @@ public class BlockSpawner : MonoBehaviour
     void Update()
     {
         if (Time.time > nextTimeToSpawn) {
+            float spawnWaitingTime = Mathf.Lerp(spawnWaitingTimeMinMax.y, spawnWaitingTimeMinMax.x, Difficulty.GetDifficultyPercent());
             SpawnBlock();
             nextTimeToSpawn = Time.time + spawnWaitingTime;
         }
@@ -42,6 +44,5 @@ public class BlockSpawner : MonoBehaviour
         Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(minRotation,maxRotation));
         GameObject obj = Instantiate(objectToSpawn,randomPositionToSpawn,randomRotation);
         obj.transform.localScale = randomScale;
-        Destroy(obj, 4.0f);
     }
 }
